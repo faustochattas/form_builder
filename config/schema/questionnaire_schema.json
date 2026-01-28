@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "required": ["id", "title", "questions"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["text", "checkbox", "radio", "dropdown", "boolean"]
+          },
+          "label": { "type": "string" },
+          "min_length": { "type": "integer", "minimum": 0 },
+          "max_length": { "type": "integer", "minimum": 0 },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "value"],
+              "properties": {
+                "label": { "type": "string" },
+                "value": {}
+              }
+            }
+          },
+          "preset": { "type": "string" },
+          "visible_if": { "type": "object" }
+        }
+      }
+    }
+  }
+}
