@@ -21,8 +21,19 @@ module FormBuilder
         format_condition_lines(visible_if)
       end
 
-      def render(_responses)
-        raise NotImplementedError, "Subclasses must implement #render"
+      # Header line printed as: "N. <header>"
+      def render_header
+        label
+      end
+
+      # Body lines printed after visibility lines
+      def render_body(_responses)
+        ""
+      end
+
+      # Backwards compatible wrapper
+      def render(responses)
+        [render_header, render_body(responses)].reject { |s| s.nil? || s.strip.empty? }.join("\n")
       end
 
       def self.build(config)

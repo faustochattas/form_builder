@@ -4,4 +4,5 @@ source "https://rubygems.org"
 
 gem "rspec"
 gem "json-schema"
-gem "thor"
+
+

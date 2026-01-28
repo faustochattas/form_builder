@@ -9,11 +9,11 @@ module FormBuilder
         @max = config["max_length"]
       end
 
-      def render(_responses)
-        output = label.dup
-        output << "\n   You can enter at least <#{@min}> characters." if @min
-        output << "\n   You can enter at most <#{@max}> characters." if @max
-        output
+      def render_body(_responses)
+        lines = []
+        lines << "   You can enter at least <#{@min}> characters." if @min
+        lines << "   You can enter at most <#{@max}> characters." if @max
+        lines.join("\n")
       end
     end
   end

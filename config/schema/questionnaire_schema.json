@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "required": ["id", "title", "questions"],
   "properties": {
@@ -30,6 +31,8 @@
             }
           },
           "preset": { "type": "string" },
+          "allow_other": { "type": "boolean" },
+          "allow_none": { "type": "boolean" },
           "visible_if": { "type": "object" }
         }
       }

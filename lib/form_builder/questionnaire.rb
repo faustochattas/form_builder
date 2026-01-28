@@ -26,7 +26,7 @@ module FormBuilder
         next unless question.visible?(form_responses)
 
         puts "#{number}. #{question.render(form_responses)}"
-        question.visibility_lines.each { |line| puts "   #{line}" }
+        question.visibility_lines.each { |line| puts "  #{line}" }
         puts
 
         number += 1

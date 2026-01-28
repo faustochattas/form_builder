@@ -15,13 +15,15 @@ module FormBuilder
           end
       end
 
-      def render(responses)
+      def render_body(responses)
         selected = responses[id]
 
-        lines = [label]
+        lines = []
         @options.each do |opt|
-          checked = selected == opt[:value] || selected == opt["value"] ? "x" : " "
-          lines << "  - (#{checked}) #{opt[:label] || opt['label']} (value: '#{opt[:value] || opt['value']}')"
+          value = opt[:value] || opt["value"]
+          text = opt[:label] || opt["label"]
+          checked = selected == value ? "x" : " "
+          lines << "  - (#{checked}) #{text} (value: '#{value}')"
         end
 
         lines.join("\n")

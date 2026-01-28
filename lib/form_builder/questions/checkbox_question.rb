@@ -18,21 +18,30 @@ module FormBuilder
         @allow_none = config["allow_none"]
       end
 
-      def render(responses)
+      def render_body(responses)
         selected = Array(responses[id])
 
-        lines = [label]
+        lines = []
 
         @options.each do |opt|
           value = opt[:value] || opt["value"]
-          label = opt[:label] || opt["label"]
+          text = opt[:label] || opt["label"]
           checked = selected.include?(value) ? "x" : " "
-          lines << "  - [#{checked}] #{label} (value: '#{value}')"
+          lines << "  - [#{checked}] #{text} (value: '#{value}')"
         end
 
         if @allow_other
-          checked = selected.include?("_") ? "x" : " "
+          other_selected = selected.include?("_")
+          checked = other_selected ? "x" : " "
           lines << "  - [#{checked}] Other (value: '_')"
+
+          if other_selected
+            other_text_key = "#{id}_other"
+            other_text = responses[other_text_key]
+            if other_text && !other_text.to_s.strip.empty?
+              lines << "    Other text: #{other_text.inspect}"
+            end
+          end
         end
 
         if @allow_none

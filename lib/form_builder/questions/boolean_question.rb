@@ -8,11 +8,11 @@ module FormBuilder
         yes_checked = value == true ? "x" : " "
         no_checked = value == false ? "x" : " "
 
-        <<~TXT.strip
-          #{label}
-             - (#{yes_checked}) Yes (value: true)
-             - (#{no_checked}) No (value: false)
-        TXT
+        lines = []
+        lines << label
+        lines << "   - (#{yes_checked}) Yes (value: true)"
+        lines << "   - (#{no_checked}) No (value: false)"
+        lines.join("\n")
       end
     end
   end
